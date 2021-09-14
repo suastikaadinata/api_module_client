@@ -1,0 +1,22 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #007bff !important;
+}
+
+.login-container {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #34495e;
+    background-color: #ffffff;
+    padding: 16px 16px 25px 16px;
+}
+
+.login-header-title {
+    text-align: center;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,72 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.content-container {
+    padding: 30px;
+    width: 100%;
+    min-height: 100%;
+    background-color: #ecf0f1;
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.db-custom {
+    border-collapse: collapse !important;
+}
+
+.db-custom th,
+.db-custom td {
+    border: 1px solid #212b38 !important;
+}
+
+.db-custom th {
+    text-align: center;
+}
+
+.db-custom .td-align-center {
+    text-align: center;
+}
+
+.db-custom .aksi-edit {
+    color: #1abc9c;
+    width: fit-content;
+}
+
+.db-custom .aksi-hapus {
+    color: #e74c3c;
+    padding-left: 5px;
+    border-left: 1px solid #212b38;
+}
+
+.db-custom .aksi-edit:hover {
+    cursor: pointer;
+    color: #1abc9c;
+    border-bottom: 1px solid #1abc9c;
+}
+
+.db-custom .aksi-hapus:hover {
+    cursor: pointer;
+    color: #e74c3c;
+    border-bottom: 1px solid #e74c3c;
+}
+
+.img-preview {
+    width: 100%;
+    background-size: cover;
+    height: 150px;
+    margin-bottom: 10px;
+    border: 1px solid #007bff;
+    background-color: #ffffff;
+}
+
+.img-preview img {
+    width: 100%;
+    background-size: cover;
+    height: 100%;
+}
