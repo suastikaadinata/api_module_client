@@ -18,5 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/home', [InventoryController::class, 'index']);
+Route::get('/detail/{id}', [InventoryController::class, 'detail']);
+Route::post('/detail/update/{id}', [InventoryController::class, 'updateInventory']);
 Route::get('/add', [InventoryController::class, 'add']);
 Route::post('/add', [InventoryController::class, 'addInventory']);
+Route::get('/delete/{id}', [InventoryController::class, 'delete']);

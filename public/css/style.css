@@ -70,3 +70,24 @@ body {
     background-size: cover;
     height: 100%;
 }
+
+.text-ajukan {
+    color: #3498db;
+    width: fit-content;
+}
+
+.text-ajukan:hover {
+    cursor: pointer;
+    color: #2980b9;
+    border-bottom: 1px solid #2980b9;
+    width: fit-content;
+}
+
+.inventory-confirmation {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.icon-valid {
+    color: #2ecc71;
+}

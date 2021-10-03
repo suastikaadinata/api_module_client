@@ -89,4 +89,107 @@ class InventoryController extends Controller
             var_dump($errorResponse);
         }
     }
+
+    public function delete($id)
+    {
+        $client = new Client();
+
+        try {
+            $url = $this->base_url . "inventory/" . $id;
+            $apiRequest = $client->delete($url, [
+                'headers' => [
+                    'Accept'        => 'application/json',
+                    'Authorization' => 'Bearer ' . Cookie::get('token')
+                ],
+            ]);
+
+            if ($apiRequest->getStatusCode() == 200) {
+                return response()->json(['status' => 'sukses'], 200);
+            }
+        } catch (ClientException $e) {
+            $errorCode = $e->getResponse()->getStatusCode();
+            $errorResponse = json_decode($e->getResponse()->getBody()->getContents(), true);
+            var_dump([
+                'code'      => $errorCode,
+                'message'   => $errorResponse
+            ]);
+        }
+    }
+
+    public function detail($id)
+    {
+        $client = new Client();
+
+        try {
+            $url = $this->base_url . "inventory/" . $id;
+            $apiRequest = $client->get($url, [
+                'headers' => [
+                    'Accept'        => 'application/json',
+                    'Authorization' => 'Bearer ' . Cookie::get('token')
+                ],
+            ]);
+
+            if ($apiRequest->getStatusCode() == 200) {
+                $response = json_decode($apiRequest->getBody()->getContents(), true);
+                return view('detail', ['inventory' => $response['data']]);
+            }
+        } catch (ClientException $e) {
+            $errorCode = $e->getResponse()->getStatusCode();
+            $errorResponse = json_decode($e->getResponse()->getBody()->getContents(), true);
+            var_dump([
+                'code'      => $errorCode,
+                'message'   => $errorResponse
+            ]);
+        }
+    }
+
+    public function updateInventory($id, Request $request)
+    {
+        $content = "";
+        if ($request->file('foto')) {
+            $content = fopen($request->foto, 'r');
+        }
+        $body = array(
+            array(
+                'name'      => 'nama',
+                'contents'   => $request->nama
+            ),
+            array(
+                'name'      => 'tgl_pembelian',
+                'contents'   => date("Y-m-d", strtotime($request->tanggal))
+            ),
+            array(
+                'name'      => 'no_bukti',
+                'contents'   => $request->no_bukti
+            ),
+            array(
+                'name'      => 'harga',
+                'contents'   => $request->harga
+            ),
+            array(
+                'name'      => 'foto',
+                'contents'  => $content
+            ),
+        );
+
+        $client = new Client();
+
+        try {
+            $url = $this->base_url . "inventory/" . $id;
+            $apiRequest = $client->post($url, [
+                'multipart' => $body,
+                'headers' => [
+                    'Accept'        => 'application/json',
+                    'Authorization' => 'Bearer ' . Cookie::get('token')
+                ]
+            ]);
+
+            if ($apiRequest->getStatusCode() == 200) {
+                return redirect('/home');
+            }
+        } catch (RequestException $e) {
+            $errorResponse = $e->getResponse()->getBody()->getContents();
+            var_dump($errorResponse);
+        }
+    }
 }
